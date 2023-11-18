@@ -21,7 +21,6 @@ function select(\PDO $db_connection, string $platform_namespace, string $driver_
  * The data for the new record is presented as a key => value array
  */
 function insert(\PDO $db_connection, string $platform_namespace, string $driver_namespace, string $table, array $data): \PDOStatement {
-    /** @var \PDOStatement $query */
     $query = $driver_namespace . '\query';
     return $query($db_connection, sql\prepare_insert($platform_namespace, $table, $data));
 }
@@ -34,7 +33,6 @@ function insert(\PDO $db_connection, string $platform_namespace, string $driver_
 function update(\PDO $db_connection, string $platform_namespace, string $driver_namespace, string $table, array $data, array $where = []): \PDOStatement {
     $update = sql\prepare_update($platform_namespace, $table, $data);
     $where = sql\prepare_where($platform_namespace, $where);
-    /** @var \PDOStatement $query */
     $query = $driver_namespace . '\query';
     return $query($db_connection, implode(' ', [$update, $where]));
 }
@@ -46,8 +44,6 @@ function update(\PDO $db_connection, string $platform_namespace, string $driver_
 function delete(\PDO $db_connection, string $platform_namespace, string $driver_namespace, string $table, array $where = []): \PDOStatement {
     $delete = sql\prepare_delete($platform_namespace, $table);
     $where = sql\prepare_where($platform_namespace, $where);
-    /** @var \PDOStatement $query */
     $query = $driver_namespace . '\query';
     return $query($db_connection, implode(' ', [$delete, $where]));
 }
-
