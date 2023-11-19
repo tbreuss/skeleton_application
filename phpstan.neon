@@ -1,0 +1,7 @@
+parameters:
+  level: 6
+  paths:
+  - src/aint/framework/library
+  - src/app
+  ignoreErrors:
+  - "#no value type specified in iterable type array#"

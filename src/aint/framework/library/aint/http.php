@@ -105,7 +105,7 @@ function redirect(array $response, string $location): array {
  * Adds cookie header to the response array passed
  */
 function add_cookie_header(array $response, ?string $name = null, ?string $value = null, ?int $expires = null, ?string $path = null, ?string $domain = null,
-                           bool $secure = false, bool $http_only = false, ?string $max_age = null, ?string $version = null) {
+                           bool $secure = false, bool $http_only = false, ?string $max_age = null, ?string $version = null): array {
     if (strpos($value, '"')!==false)
         $value = '"' . urlencode(str_replace('"', '', $value)) . '"';
     else

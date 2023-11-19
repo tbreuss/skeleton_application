@@ -38,7 +38,7 @@ function prepare_where(string $platform_namespace, array $where): string {
  *
  * @throws bad_columns_error
  */
-function prepare_select(string $platform_namespace, array $columns, string $table): string {
+function prepare_select(string $platform_namespace, array|string $columns, string $table): string {
     $quote_identifier = $platform_namespace . '\quote_identifier';
     if (is_array($columns))
         $columns = implode(',', array_map($quote_identifier, $columns));

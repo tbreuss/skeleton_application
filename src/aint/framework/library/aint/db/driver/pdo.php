@@ -16,7 +16,7 @@ const param_dns = 'dns',
 /**
  * Fetches all resulting records for a query
  */
-function fetch_all(\PDO $pdo_connection, string $query): array|false {
+function fetch_all(\PDO $pdo_connection, string $query): array {
     return query($pdo_connection, $query)->fetchAll();
 }
 

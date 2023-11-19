@@ -14,7 +14,7 @@ function quote_identifier(string $identifier): string {
 /**
  * Quotes a value such as a column value
  */
-function quote_value(string $value): string {
+function quote_value(array|string $value): string {
     $value = str_replace('\'', '\\' . '\'', $value);
     if (is_array($value))
         $value = implode('\', \'', $value);
@@ -24,12 +24,8 @@ function quote_value(string $value): string {
 /**
  * Quotes all values in the string, presented by placeholders
  * (using `sprintf`)
- *
- * @param string
- * @param mixed,...
- * @return string
  */
-function quote_into() {
+function quote_into(): string {
     $args = func_get_args();
     $query = array_shift($args);
     $params = array_map(__NAMESPACE__ . '\quote_value', $args);

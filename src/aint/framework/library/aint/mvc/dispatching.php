@@ -18,18 +18,10 @@ class not_found_error extends \exception {};
 /**
  * Dispatches a custom request, returns response
  *
- * @param $request
- * @param $routers
- * @param $actions_namespace
- * @param callable $error_handler
- * @param array $request_callbacks
- * @param array $route_callbacks
- * @param array $response_callbacks
- * @return array
  * @throws not_found_error
  */
-function dispatch_request($request, $routers, $actions_namespace, callable $error_handler,
-                          $request_callbacks = [], $route_callbacks = [], $response_callbacks = []) {
+function dispatch_request(array $request, array $routers, string $actions_namespace, callable $error_handler,
+                          array $request_callbacks = [], array $route_callbacks = [], array $response_callbacks = []): array {
     foreach ($request_callbacks as $callback) {
         $request = $callback($request);
     }
@@ -46,8 +38,8 @@ function dispatch_request($request, $routers, $actions_namespace, callable $erro
     // dispatching to response
     try {
         if (empty($route)
-            || (!is_callable($action = $route[routing\route_action])
-                && !is_callable($action = $actions_namespace . '\\' . $action)))
+            || (!is_callable($action = $route[routing\route_action]) // @phpstan-ignore-line
+                && !is_callable($action = $actions_namespace . '\\' . $action))) // @phpstan-ignore-line
             throw new not_found_error();
         $response = $action($request, $route[routing\route_params]);
     } catch (\exception $error) {
@@ -62,16 +54,9 @@ function dispatch_request($request, $routers, $actions_namespace, callable $erro
 
 /**
  * Dispatches global http request and sends the response
- *
- * @param $routers
- * @param $actions_namespace
- * @param callable $error_handler
- * @param array $request_callbacks
- * @param array $route_callbacks
- * @param array $response_callbacks
  */
-function dispatch_http($routers, $actions_namespace, callable $error_handler,
-                       $request_callbacks = [], $route_callbacks = [], $response_callbacks = []): void {
+function dispatch_http(array $routers, string $actions_namespace, callable $error_handler,
+                       array $request_callbacks = [], array $route_callbacks = [], array $response_callbacks = []): void {
     $request = http\build_request_from_globals();
     $response = dispatch_request($request, $routers, $actions_namespace, $error_handler,
                                  $request_callbacks, $route_callbacks, $response_callbacks);
@@ -80,9 +65,6 @@ function dispatch_http($routers, $actions_namespace, callable $error_handler,
 
 /**
  * Dispatches global http request with default route_segment router and sends the response
- *
- * @param string $actions_namespace E.g. app\controller\actions
- * @param callable $error_handler
  */
 function dispatch_http_default_router(string $actions_namespace, callable $error_handler): void {
     dispatch_http(['\aint\mvc\routing\route_segment'],

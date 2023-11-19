@@ -15,16 +15,15 @@ function error_action(array $request, array $params, exception $error): array
 {
     if ($error instanceof dispatching\not_found_error) {
         $status = 404;
-        $message = 'Page ' . $request[http\request_path] . ' is not found';
+        $message = 'Page ' . $request[http\request_path] . ' is not found'; // @phpstan-ignore-line
     } else {
         $status = 500;
         $message = 'System error';
         error_log(get_class($error) . ' ' . $error->getMessage());
     }
-    $response = http\response_status(
+
+    return http\response_status(
         view\render('errors/error', ['message' => $message]),
         $status
     );
-
-    return $response;
 }
