@@ -6,4 +6,7 @@ return [
 
     // you can override the configuration in local environments by creating
     // app.local.inc in the same directory and excluding it from VCS.
+    'db' => [
+        'dns' => 'sqlite:' . dirname(__DIR__, 4) . '/database/data.sqlite3'
+    ]
 ];

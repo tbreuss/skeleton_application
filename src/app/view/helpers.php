@@ -3,6 +3,7 @@ namespace app\view\helpers;
 
 use aint\mvc\routing;
 use app\model;
+use app\view;
 
 /**
  * Separator for the <title/> tag content parts
@@ -37,4 +38,13 @@ function uri(string $route_action, array $route_params = []): string {
  */
 function translate(string $text): string {
     return model\translate($text);
+}
+
+function album_form($action, $album = []) {
+    $default_album_data = [
+        'title' => '',
+        'artist' => '',
+    ];
+    $album = array_merge($default_album_data, $album);
+    return view\render_template('album_form', ['album' => $album, 'action' => $action]);
 }

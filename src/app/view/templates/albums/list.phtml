@@ -1,0 +1,30 @@
+<?php
+use app\view\helpers;
+
+helpers\head_title($title = helpers\translate('My Albums'));
+?>
+<h1><?= htmlspecialchars($title) ?></h1>
+<p>
+    <a href="<?= helpers\uri('albums\add_action') ?>">Add new album</a>
+</p>
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Artist</th>
+        <th>Controls</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($albums as $album) : ?>
+    <tr>
+        <td><?= htmlspecialchars($album['title']) ?></td>
+        <td><?= htmlspecialchars($album['artist']) ?></td>
+        <td>
+            <a href="/albums/edit/id/<?= $album['id'] ?>">Edit</a> |
+            <a href="/albums/delete/id/<?= $album['id'] ?>">Delete</a>
+        </td>
+    </tr>
+        <?php endforeach ?>
+    </tbody>
+</table>

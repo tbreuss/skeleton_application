@@ -1,0 +1,7 @@
+<?php
+use app\view\helpers;
+
+helpers\head_title($title = helpers\translate('Edit album'));
+?>
+<h1><?= htmlspecialchars($title) ?></h1>
+<p><?= helpers\album_form('/albums/edit/id/' . $album['id'], $album) ?></p>

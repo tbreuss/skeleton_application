@@ -9,7 +9,7 @@ use aint\db\sql;
 /**
  * Prepares and executes a select query on the table specified.
  */
-function select(\PDO $db_connection, string $platform_namespace, string $driver_namespace, string $table, array $where = []): array|false {
+function select(\PDO $db_connection, string $platform_namespace, string $driver_namespace, string $table, array $where = []): array {
     $select = sql\prepare_select($platform_namespace, '*', $table);
     $where = sql\prepare_where($platform_namespace, $where);
     $fetch_all = $driver_namespace . '\fetch_all';
