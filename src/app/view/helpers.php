@@ -40,7 +40,7 @@ function translate(string $text): string {
     return model\translate($text);
 }
 
-function album_form($action, $album = []) {
+function album_form(string $action, array $album = []): string {
     $default_album_data = [
         'title' => '',
         'artist' => '',

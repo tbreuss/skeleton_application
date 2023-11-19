@@ -26,7 +26,7 @@ function insert(array $data): \PDOStatement {
     return call_table_func('insert', $data);
 }
 
-function update($data, $where = []): \PDOStatement {
+function update(array $data, array $where = []): \PDOStatement {
     return call_table_func('update', $data, $where);
 }
 
