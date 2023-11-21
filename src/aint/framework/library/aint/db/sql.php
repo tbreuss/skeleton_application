@@ -67,7 +67,6 @@ function prepare_insert(string $platform_namespace, string $table, array $data):
     return sprintf(insert_specification, $quote_identifier($table), $keys, $values);
 }
 
-
 /**
  * Prepares UPDATE part of SQL query
  */
