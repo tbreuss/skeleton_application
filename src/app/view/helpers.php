@@ -2,7 +2,7 @@
 namespace app\view\helpers;
 
 use aint\mvc\routing;
-use app\model;
+use app;
 use app\view;
 
 /**
@@ -37,7 +37,7 @@ function uri(string $route_action, array $route_params = []): string {
  * Translates given piece of text, using model's translator
  */
 function translate(string $text): string {
-    return model\translate($text);
+    return app\translate($text);
 }
 
 function album_form(string $action, array $album = []): string {

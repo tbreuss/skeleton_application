@@ -20,8 +20,15 @@ class not_found_error extends \exception {};
  *
  * @throws not_found_error
  */
-function dispatch_request(array $request, array $routers, string $actions_namespace, callable $error_handler,
-                          array $request_callbacks = [], array $route_callbacks = [], array $response_callbacks = []): array {
+function dispatch_request(
+    http\request $request,
+    array $routers,
+    string $actions_namespace,
+    callable $error_handler,
+    array $request_callbacks = [],
+    array $route_callbacks = [],
+    array $response_callbacks = []
+): http\response {
     foreach ($request_callbacks as $callback) {
         $request = $callback($request);
     }

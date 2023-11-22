@@ -1,31 +1,31 @@
 <?php
 
-namespace app\controller\actions\albums;
+namespace app\actions\albums;
 
 use aint\http;
 use aint\mvc\dispatching\not_found_error;
 use app\model\albums as albums_model;
 use app\view;
 
-function index_action(): array {
+function index_action(): http\response {
     return list_action();
 }
 
-function list_action(): array {
+function list_action(): http\response {
     return view\render('albums/list', ['albums' => albums_model\list_albums()]);
 }
 
-function add_action(array $request): array {
+function add_action(http\request $request): http\response {
     if (http\is_post($request)) {
-        albums_model\add_album($request['params']);
+        albums_model\add_album($request->params);
         return http\build_redirect('/albums');
     }
     return view\render('albums/add');
 }
 
-function edit_action(array $request, array $params): array {
+function edit_action(http\request $request, array $params): http\response {
     if (http\is_post($request)) {
-        albums_model\edit_album($params['id'], $request['params']);
+        albums_model\edit_album($params['id'], $request->params);
         return http\build_redirect('/albums');
     }
     $album = albums_model\get_album($params['id']);
@@ -34,7 +34,7 @@ function edit_action(array $request, array $params): array {
     return view\render('albums/edit', ['album' => $album]);
 }
 
-function delete_action(array $request, array $params): array {
+function delete_action(http\request $request, array $params): http\response {
     albums_model\delete_album($params['id']);
     return http\build_redirect('/albums');
 }

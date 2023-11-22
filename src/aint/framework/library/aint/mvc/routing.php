@@ -36,8 +36,8 @@ const function_postfix = '_action';
  * Routes
  *    /albums is routed to albums\index_action with no parameters
  */
-function route_segment(array $request): array {
-    if (!($path = $request[http\request_path])) // @phpstan-ignore-line
+function route_segment(http\request $request): array {
+    if (!($path = $request->path))
         return [route_action => default_namespace
                                 . '\\' . default_function
                                 . function_postfix,

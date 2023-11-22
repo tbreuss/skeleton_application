@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controller\actions\errors;
+namespace app\actions\errors;
 
 use app\view;
 use aint\mvc\dispatching;
@@ -11,11 +11,11 @@ use exception;
  * Error handler, this function is called if something happens
  * during the dispatch process
  */
-function error_action(array $request, array $params, exception $error): array
+function error_action(http\request $request, array $params, exception $error): http\response
 {
     if ($error instanceof dispatching\not_found_error) {
         $status = 404;
-        $message = 'Page ' . $request[http\request_path] . ' is not found'; // @phpstan-ignore-line
+        $message = 'Page ' . $request->path . ' is not found';
     } else {
         $status = 500;
         $message = 'System error';

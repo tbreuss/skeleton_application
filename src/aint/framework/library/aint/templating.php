@@ -13,7 +13,7 @@ namespace aint\templating;
 function render_template(): string {
     ob_start();
     if (func_num_args() > 1)
-        extract(func_get_arg(1)); // @phpstan-ignore-line
+        extract(func_get_arg(1));
     include func_get_arg(0);
     return ob_get_clean();
 }
