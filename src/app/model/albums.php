@@ -27,6 +27,6 @@ function delete_album(int $id): void {
     albums_table\delete(['id' => $id]);
 }
 
-function edit_album(int $id, array $data): void {
+function update_album(int $id, array $data): void {
     albums_table\update($data, ['id' => $id]);
 }

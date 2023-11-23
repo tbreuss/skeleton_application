@@ -25,7 +25,7 @@ function add_action(http\request $request): http\response {
 
 function edit_action(http\request $request, array $params): http\response {
     if (http\is_post($request)) {
-        albums_model\edit_album($params['id'], $request->params);
+        albums_model\update_album($params['id'], $request->params);
         return http\build_redirect('/albums');
     }
     $album = albums_model\get_album($params['id']);
