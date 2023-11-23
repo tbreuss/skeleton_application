@@ -36,7 +36,7 @@ function config(): array
 {
     static $config;
     if ($config === null) {
-        $app_dir = dirname(__FILE__) . '/app/';
+        $app_dir = dirname(__FILE__) . '/app';
         $config = require $app_dir . app_config;
         if (is_readable($local_config = $app_dir . app_local_config))
             $config = common\merge_recursive($config, require $local_config);

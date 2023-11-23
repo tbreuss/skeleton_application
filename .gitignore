@@ -2,3 +2,4 @@
 /vendor
 app.local.inc
 error.log
+launch.json
