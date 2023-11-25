@@ -1,15 +1,15 @@
 <?php
 
-namespace app\view;
+namespace aint\web\view;
 
 use aint\templating;
-use aint\http;
+use aint\web\response;
 
 /**
  * Custom templates parameters
  * path and file extension
  */
-const templates_path = 'app/view/templates/',
+const templates_path = 'app/templates/',
       template_ext = '.phtml';
 
 /**
@@ -28,12 +28,13 @@ const layout_content_var = 'content';
  * 2-step strategy
  * returns http response data
  */
-function render(string $template, array $vars = []): http\response
+function render(string $template, array $vars = [], int $status = response\response_status_ok): response
 {
-    return http\build_response(
+    return response\build_response(
         render_template(layout_template, [
             layout_content_var => render_template($template, $vars)
-        ])
+        ]),
+        $status
     );
 }
 
@@ -46,4 +47,10 @@ function render_template(string $template, array $vars = []): string
         templates_path . $template . template_ext,
         $vars
     );
+}
+
+function error(string $message, int $status): response
+{
+    $vars = ['message' => $message];
+    return render('errors/error', $vars, $status);
 }

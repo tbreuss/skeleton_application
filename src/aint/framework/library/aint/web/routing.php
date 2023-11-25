@@ -2,9 +2,9 @@
 /**
  * Functions for routing an HTTP request to an action-function and back.
  */
-namespace aint\mvc\routing;
+namespace aint\web\routing;
 
-use aint\http;
+use aint\web\request;
 use aint\common;
 
 /**
@@ -36,7 +36,7 @@ const function_postfix = '_action';
  * Routes
  *    /albums is routed to albums\index_action with no parameters
  */
-function route_segment(http\request $request): array {
+function route_segment(request $request): array {
     if (!($path = $request->path))
         return [route_action => default_namespace
                                 . '\\' . default_function
@@ -71,5 +71,5 @@ function assemble_segment(string $route_action, array $route_params = []): strin
     // removing function postfix and replacing \ to /
     $base_uri = str_replace('\\', '/',
         substr($route_action, 0, -strlen(function_postfix)));
-    return '/' . $base_uri . '/' . implode('/', $params_uncombined);
+    return rtrim('/' . $base_uri . '/' . implode('/', $params_uncombined), '/');
 }

@@ -3,7 +3,8 @@
 namespace app;
 
 use aint\common;
-use aint\mvc\dispatching;
+use aint\web\dispatching;
+use aint\web\routing;
 
 /**
  * Namespace for application action-functions
@@ -54,6 +55,13 @@ function translate(string $text, string $locale = default_locale): string
     if (!isset($languages[$locale]))
         $languages[$locale] = require languages_path . $locale . locale_file_ext;
     return (string)common\get_param($languages[$locale], $text, $text);
+}
+
+/**
+ * Converts action function name and the parameters list back to URI
+ */
+function uri(string $route_action, array $route_params = []): string {
+    return routing\assemble_segment($route_action, $route_params);
 }
 
 /**

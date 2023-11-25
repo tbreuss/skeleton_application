@@ -1,19 +1,18 @@
 <?php
+
 /**
  * Dispatching mechanisms:
  *    processing http request,
  *    routing it to a specific handler
  *    sending the http response
  */
-namespace aint\mvc\dispatching;
+namespace aint\web\dispatching;
 
-use aint\http;
-use aint\mvc\routing;
-
-/**
- * Error thrown when an http request cannot be routed
- */
-class not_found_error extends \exception {};
+use aint\web\emitter;
+use aint\web\request;
+use aint\web\response;
+use aint\web\routing;
+use aint\web\not_found_error;
 
 /**
  * Dispatches a custom request, returns response
@@ -21,14 +20,14 @@ class not_found_error extends \exception {};
  * @throws not_found_error
  */
 function dispatch_request(
-    http\request $request,
+    request $request,
     array $routers,
     string $actions_namespace,
     callable $error_handler,
     array $request_callbacks = [],
     array $route_callbacks = [],
     array $response_callbacks = []
-): http\response {
+): response {
     foreach ($request_callbacks as $callback) {
         $request = $callback($request);
     }
@@ -64,17 +63,17 @@ function dispatch_request(
  */
 function dispatch_http(array $routers, string $actions_namespace, callable $error_handler,
                        array $request_callbacks = [], array $route_callbacks = [], array $response_callbacks = []): void {
-    $request = http\build_request_from_globals();
+    $request = request\build_request_from_globals();
     $response = dispatch_request($request, $routers, $actions_namespace, $error_handler,
                                  $request_callbacks, $route_callbacks, $response_callbacks);
-    http\send_response($response);
+    emitter\send_response($response);
 }
 
 /**
  * Dispatches global http request with default route_segment router and sends the response
  */
 function dispatch_http_default_router(string $actions_namespace, callable $error_handler): void {
-    dispatch_http(['\aint\mvc\routing\route_segment'],
+    dispatch_http(['\aint\web\routing\route_segment'],
         $actions_namespace,
         $error_handler);
 }

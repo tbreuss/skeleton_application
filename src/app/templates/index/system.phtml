@@ -1,0 +1,30 @@
+<?php aint\html\head_title($title = app\translate('System')) ?>
+<h1><?= htmlspecialchars($title) ?></h1>
+
+<h2>Constants</h2>
+<table class="table">
+<?php foreach ($constants as $key => $value): ?>
+  <tr>
+    <td><?= $key ?></td>
+    <td><?= $value ?></td>
+  </tr>
+<?php endforeach ?>
+</table>
+
+<h2>Classes/Structs</h2>
+<table class="table">
+<?php foreach ($classes as $class): ?>
+  <tr>
+    <td><?= $class ?></td>
+  </tr>
+<?php endforeach ?>
+</table>
+
+<h2>Functions</h2>
+<table class="table">
+<?php foreach ($functions as $function): ?>
+  <tr>
+    <td><?= $function ?></td>
+  </tr>
+<?php endforeach ?>
+</table>

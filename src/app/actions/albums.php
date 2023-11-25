@@ -2,39 +2,40 @@
 
 namespace app\actions\albums;
 
-use aint\http;
-use aint\mvc\dispatching\not_found_error;
-use app\model\albums as albums_model;
-use app\view;
+use aint\web\request;
+use aint\web\response;
+use aint\web\view;
+use app\model\albums;
 
-function index_action(): http\response {
+function index_action(): response {
     return list_action();
 }
 
-function list_action(): http\response {
-    return view\render('albums/list', ['albums' => albums_model\list_albums()]);
+function list_action(): response {
+    return view\render('albums/list', ['albums' => albums\list_albums()]);
 }
 
-function add_action(http\request $request): http\response {
-    if (http\is_post($request)) {
-        albums_model\add_album($request->params);
-        return http\build_redirect('/albums');
+function add_action(request $request): response {
+    if (request\is_post($request)) {
+        albums\add_album($request->params);
+        return response\build_redirect('/albums');
     }
     return view\render('albums/add');
 }
 
-function edit_action(http\request $request, array $params): http\response {
-    if (http\is_post($request)) {
-        albums_model\update_album($params['id'], $request->params);
-        return http\build_redirect('/albums');
+function edit_action(request $request, array $params): response {
+    $id = $params['id'];
+    if (request\is_post($request)) {
+        albums\update_album($id, $request->params);
+        return response\build_redirect('/albums');
     }
-    $album = albums_model\get_album($params['id']);
-    if ($album === null)
-        throw new not_found_error();
-    return view\render('albums/edit', ['album' => $album]);
+    $album = albums\get_album($id);
+    return $album
+        ? view\render('albums/edit', ['album' => $album])
+        : view\error("Album $id not found.", response\response_status_not_found);
 }
 
-function delete_action(http\request $request, array $params): http\response {
-    albums_model\delete_album($params['id']);
-    return http\build_redirect('/albums');
+function delete_action(request $request, array $params): response {
+    albums\delete_album($params['id']);
+    return response\build_redirect('/albums');
 }
