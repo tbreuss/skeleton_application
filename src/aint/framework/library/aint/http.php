@@ -4,6 +4,24 @@
  */
 namespace aint\http;
 
+/**
+ * Http Request method types
+ */
+const request_method_post = 'POST',
+      request_method_get = 'GET',
+      request_method_put = 'PUT',
+      request_method_delete = 'DELETE';
+
+const response_status_ok = 200,
+      response_status_created = 201,
+      response_status_moved_permanently = 301,
+      response_status_found = 302,
+      response_status_bad_request = 400,
+      response_status_unauthorized = 401,
+      response_status_not_found = 404,
+      response_status_method_not_allowed = 405,
+      response_status_internal_server_error = 500;
+
 class request {
     public function __construct(
         public string $scheme,
@@ -22,14 +40,6 @@ class response {
         public array $headers,
     ) {}
 }
-
-/**
- * Http Request method types
- */
-const request_method_post = 'POST',
-      request_method_get = 'GET',
-      request_method_put = 'PUT',
-      request_method_delete = 'DELETE';
 
 /**
  * Retrieves data about the current HTTP request using PHP's global arrays
@@ -79,8 +89,8 @@ function is_put(request $request): bool {
 /**
  * Prepares data for HTTP response based on the parameters passed
  */
-function build_response(string $body = '', int $code = 200, array $headers = []): response {
-    return new response($code, $body, $headers);
+function build_response(string $body = '', int $status = response_status_ok, array $headers = []): response {
+    return new response($status, $body, $headers);
 }
 
 /**
@@ -93,7 +103,7 @@ function build_redirect(string $location): response {
 /**
  * Sets the response data passed to be redirected to location specified
  */
-function redirect(response $response, string $location, int $status = 302): response {
+function redirect(response $response, string $location, int $status = response_status_found): response {
     $response->headers[] = 'Location: ' . $location;
     $response->status = $status;
     return $response;
