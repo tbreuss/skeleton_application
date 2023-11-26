@@ -13,6 +13,7 @@ use aint\web\request;
 use aint\web\response;
 use aint\web\routing;
 use aint\web\not_found_error;
+use aint\web\method_not_allowed_error;
 
 /**
  * Dispatches a custom request, returns response
@@ -47,6 +48,16 @@ function dispatch_request(
             || (!is_callable($action = $route[routing\route_action]) // @phpstan-ignore-line
                 && !is_callable($action = $actions_namespace . '\\' . $action))) // @phpstan-ignore-line
             throw new not_found_error();
+
+        $request_methods = ['GET']; // default
+        foreach ((new \ReflectionFunction($action))->getAttributes() as $attribute) {
+            $request_methods[] = $attribute->newInstance()->type;
+        }
+
+        if (!in_array($request->method, $request_methods)) {
+            throw new method_not_allowed_error();
+        }
+
         $response = $action($request, $route[routing\route_params]);
     } catch (\exception $error) {
         $params = empty($route) ? [] : $route[routing\route_params];

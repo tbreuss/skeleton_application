@@ -15,6 +15,7 @@ function list_action(): response {
     return view\render('albums/list', ['albums' => albums\list_albums()]);
 }
 
+#[request\is_post]
 function add_action(request $request): response {
     if (request\is_post($request)) {
         albums\add_album($request->params);
@@ -23,6 +24,7 @@ function add_action(request $request): response {
     return view\render('albums/add');
 }
 
+#[request\is_post]
 function edit_action(request $request, array $params): response {
     $id = $params['id'];
     if (request\is_post($request)) {

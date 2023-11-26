@@ -12,6 +12,16 @@ const request_method_post = 'POST',
       request_method_put = 'PUT',
       request_method_delete = 'DELETE';
 
+#[\Attribute]
+class is_get {
+    public string $type = 'GET';
+}
+
+#[\Attribute]
+class is_post {
+    public string $type = 'POST';
+}
+
 /**
  * Retrieves data about the current HTTP request using PHP's global arrays
  */

@@ -25,3 +25,5 @@ class response {
  * Error thrown when an http request cannot be routed
  */
 class not_found_error extends \exception {}
+
+class method_not_allowed_error extends \exception {}
