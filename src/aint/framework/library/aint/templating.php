@@ -10,10 +10,10 @@ namespace aint\templating;
  * Usage example:
  * render_template('/home/alex/my_templates/template.tpl', ['data' => 'Hello World'])
  */
-function render_template(): string {
+function render_template(string $_template_, array $_data_ = []): string {
     ob_start();
-    if (func_num_args() > 1)
-        extract(func_get_arg(1));
-    include func_get_arg(0);
+    if (!empty($_data_))
+        extract($_data_);
+    include $_template_;
     return ob_get_clean();
 }

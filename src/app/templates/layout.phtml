@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
-  <?= aint\html\head_title(app\translate('Quick Start')) ?>
+  <?= aint\html\head_title(t('Quick Start')) ?>
   <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -12,9 +11,7 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="shortcut icon" href="/images/favicon.ico">
 </head>
-
 <body class="preview" style="padding-top: 65px">
-
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
@@ -23,33 +20,30 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="/"><?= app\translate('aint framework skeleton application') ?></a>
-
+        <a class="brand" href="/"><?= t('aint framework skeleton application') ?></a>
         <div class="nav-collapse" id="main-menu">
           <ul class="nav" id="main-menu-left">
-            <li><a href="<?= app\uri('index\index_action') ?>"><?= app\translate('Home') ?></a></li>
-            <li><a href="<?= app\uri('albums\index_action') ?>"><?= app\translate('Albums') ?></a></li>
-            <li><a href="<?= app\uri('index\system_action') ?>"><?= app\translate('System') ?></a></li>
+            <li><a href="<?= url('index\index_action') ?>"><?= t('Home') ?></a></li>
+            <li><a href="<?= url('albums\index_action') ?>"><?= t('Albums') ?></a></li>
+            <li><a href="<?= url('index\system_action') ?>"><?= t('System') ?></a></li>
           </ul>
           <ul class="nav pull-right" id="main-menu-right">
-            <li><a rel="tooltip" target="_blank" href="http://aint.lcf.name/" title="<?= app\translate('AINT PHP FRAMEWORK') ?>">
-                <?= app\translate('AINT PHP FRAMEWORK') ?></a>
+            <li><a rel="tooltip" target="_blank" href="http://aint.lcf.name/" title="<?= t('AINT PHP FRAMEWORK') ?>">
+                <?= t('AINT PHP FRAMEWORK') ?></a>
             </li>
           </ul>
         </div>
       </div>
     </div>
   </div>
-
   <div class="container">
     <div class="row">
       <?= $content ?>
     </div>
     <footer class="footer">
       <hr />
-      <p class="pull-right"><?= app\translate('Powered by aint framework') ?></p>
+      <p class="pull-right"><?= t('Powered by aint framework') ?></p>
     </footer>
   </div>
 </body>
-
 </html>

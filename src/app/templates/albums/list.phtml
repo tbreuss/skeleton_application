@@ -1,26 +1,26 @@
-<?php aint\html\head_title($title = app\translate('My Albums')) ?>
-<h1><?= htmlspecialchars($title) ?></h1>
+<?php aint\html\head_title($title = t('My Albums')) ?>
+<h1><?= h($title) ?></h1>
 <p>
-    <a href="<?= app\uri('albums\add_action') ?>">Add new album</a>
+  <a href="<?= url('albums\add_action') ?>"><?= t('Add new album') ?></a>
 </p>
 <table class="table table-bordered table-striped">
-    <thead>
+  <thead>
     <tr>
-        <th>Title</th>
-        <th>Artist</th>
-        <th>Controls</th>
+      <th><?= t('Title') ?></th>
+      <th><?= t('Artist') ?></th>
+      <th><?= t('Controls') ?></th>
     </tr>
-    </thead>
-    <tbody>
+  </thead>
+  <tbody>
     <?php foreach ($albums as $album) : ?>
-    <tr>
-        <td><?= htmlspecialchars($album['title']) ?></td>
-        <td><?= htmlspecialchars($album['artist']) ?></td>
+      <tr>
+        <td><?= h($album['title']) ?></td>
+        <td><?= h($album['artist']) ?></td>
         <td>
-            <a href="<?= app\uri('albums\edit_action', ['id' => $album['id']]) ?>">Edit</a> |
-            <a href="<?= app\uri('albums\delete_action', ['id' => $album['id']]) ?>">Delete</a>
+          <a href="<?= url('albums\edit_action', ['id' => $album['id']]) ?>"><?= t('Edit') ?></a> |
+          <a href="<?= url('albums\delete_action', ['id' => $album['id']]) ?>"><?= t('Delete') ?></a>
         </td>
-    </tr>
-        <?php endforeach ?>
-    </tbody>
+      </tr>
+    <?php endforeach ?>
+  </tbody>
 </table>

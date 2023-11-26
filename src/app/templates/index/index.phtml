@@ -1,12 +1,12 @@
-<?php aint\html\head_title($title = app\translate('Well done!')) ?>
-<h1><?= htmlspecialchars($title) ?></h1>
-<p><?= app\translate('You have successfully installed aint framework skeleton application.') ?></p>
+<?php aint\html\head_title($title = t('Well done!')) ?>
+<h1><?= h($title) ?></h1>
+<p><?= t('You have successfully installed aint framework skeleton application.') ?></p>
 
 <div class="row">
   <div class="span6">
-    <h2><?= app\translate('Development') ?></h2>
+    <h2><?= t('Development') ?></h2>
     <p><?= sprintf(
-          app\translate('The framework is currently at the stage of early prototyping thus any kind of help is seeked for and highly appreciated. To report bugs, suggest improvements and fundamental changes use the %sissue tracker%s. The source code of the framework, skeleton and quick start projects as well as the documentation are all %shosted on GitHub%s.'),
+          t('The framework is currently at the stage of early prototyping thus any kind of help is seeked for and highly appreciated. To report bugs, suggest improvements and fundamental changes use the %sissue tracker%s. The source code of the framework, skeleton and quick start projects as well as the documentation are all %shosted on GitHub%s.'),
           '<a href="https://github.com/aintframework/aint_framework/issues">',
           '</a>',
           '<a href="https://github.com/aintframework">',
@@ -14,9 +14,9 @@
         ) ?></p>
   </div>
   <div class="span6">
-    <h2><?= app\translate('Support') ?></h2>
+    <h2><?= t('Support') ?></h2>
     <p><?= sprintf(
-          app\translate('There is just one support channel at the moment: the %saint framework web forum%s (based on Google Groups). Please refer all your suggestions, ideas, questions and any other kind of feedback to the forum.'),
+          t('There is just one support channel at the moment: the %saint framework web forum%s (based on Google Groups). Please refer all your suggestions, ideas, questions and any other kind of feedback to the forum.'),
           '<a href="http://aint.lcf.name">',
           '</a>'
         ) ?></p>

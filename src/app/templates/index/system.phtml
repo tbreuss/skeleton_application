@@ -1,17 +1,17 @@
-<?php aint\html\head_title($title = app\translate('System')) ?>
-<h1><?= htmlspecialchars($title) ?></h1>
+<?php aint\html\head_title($title = t('System')) ?>
+<h1><?= h($title) ?></h1>
 
-<h2>Constants</h2>
+<h2><?= t('Constants') ?></h2>
 <table class="table">
-<?php foreach ($constants as $key => $value): ?>
+<?php foreach ($constants as $name => $value): ?>
   <tr>
-    <td><?= $key ?></td>
+    <td><?= $name ?></td>
     <td><?= $value ?></td>
   </tr>
 <?php endforeach ?>
 </table>
 
-<h2>Classes/Structs</h2>
+<h2><?= t('Structs') ?></h2>
 <table class="table">
 <?php foreach ($classes as $class): ?>
   <tr>
@@ -20,7 +20,7 @@
 <?php endforeach ?>
 </table>
 
-<h2>Functions</h2>
+<h2><?= t('Functions') ?></h2>
 <table class="table">
 <?php foreach ($functions as $function): ?>
   <tr>

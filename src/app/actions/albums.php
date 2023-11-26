@@ -37,6 +37,7 @@ function edit_action(request $request, array $params): response {
         : view\error("Album $id not found.", response\response_status_not_found);
 }
 
+#[request\is_post]
 function delete_action(request $request, array $params): response {
     albums\delete_album($params['id']);
     return response\build_redirect('/albums');

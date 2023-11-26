@@ -1,23 +1,19 @@
 <form action="<?= $action ?>" method="post" class="form-horizontal well">
-    <fieldset>
-        <div class="control-group">
-            <label class="control-label" for="title">Title</label>
-
-            <div class="controls">
-                <input type="text" class="input-xlarge" id="title" name="title"
-                       value="<?= htmlspecialchars($album['title']) ?>"/>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="artist">Artist</label>
-
-            <div class="controls">
-                <input type="text" class="input-xlarge" id="artist" name="artist"
-                       value="<?= htmlspecialchars($album['artist']) ?>"/>
-            </div>
-        </div>
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Save</button>
-        </div>
-    </fieldset>
+  <fieldset>
+    <div class="control-group">
+      <label class="control-label" for="title"><?= t('Title') ?></label>
+      <div class="controls">
+        <input type="text" class="input-xlarge" id="title" name="title" value="<?= h($album['title']) ?>" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="artist"><?= t('Artist') ?></label>
+      <div class="controls">
+        <input type="text" class="input-xlarge" id="artist" name="artist" value="<?= h($album['artist']) ?>" />
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary"><?= t('Save') ?></button>
+    </div>
+  </fieldset>
 </form>

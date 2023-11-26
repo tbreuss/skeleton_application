@@ -17,8 +17,8 @@ function head_title(?string $text = null): string {
     static $title = '';
     if ($text !== null)
         if ($title === '')
-            $title = htmlspecialchars($text);
+            $title = h($text);
         else
-            $title = htmlspecialchars($text . head_title_separator) . $title;
+            $title = h($text . head_title_separator) . $title;
     return '<title>' . $title . '</title>';
 }
