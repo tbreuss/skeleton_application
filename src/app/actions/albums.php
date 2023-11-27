@@ -34,7 +34,7 @@ function edit_action(request $request, array $params): response {
     $album = album\get_album($id);
     return $album
         ? view\render('albums/edit', ['album' => $album])
-        : view\error("Album $id not found.", response\response_status_not_found);
+        : view\error("Album $id not found.", response\status_not_found);
 }
 
 #[request\is_post]

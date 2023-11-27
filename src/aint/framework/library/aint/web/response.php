@@ -4,20 +4,20 @@ namespace aint\web\response;
 
 use aint\web\response;
 
-const response_status_ok = 200,
-      response_status_created = 201,
-      response_status_moved_permanently = 301,
-      response_status_found = 302,
-      response_status_bad_request = 400,
-      response_status_unauthorized = 401,
-      response_status_not_found = 404,
-      response_status_method_not_allowed = 405,
-      response_status_internal_server_error = 500;
+const status_ok = 200,
+      status_created = 201,
+      status_moved_permanently = 301,
+      status_found = 302,
+      status_bad_request = 400,
+      status_unauthorized = 401,
+      status_not_found = 404,
+      status_method_not_allowed = 405,
+      status_internal_server_error = 500;
 
 /**
  * Prepares data for HTTP response based on the parameters passed
  */
-function build_response(string $body = '', int $status = response_status_ok, array $headers = []): response {
+function build_response(string $body = '', int $status = status_ok, array $headers = []): response {
     return new response($status, $body, $headers);
 }
 
@@ -31,7 +31,7 @@ function build_redirect(string $location): response {
 /**
  * Sets the response data passed to be redirected to location specified
  */
-function redirect(response $response, string $location, int $status = response_status_found): response {
+function redirect(response $response, string $location, int $status = status_found): response {
     $response->headers[] = 'Location: ' . $location;
     $response->status = $status;
     return $response;

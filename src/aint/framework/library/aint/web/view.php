@@ -28,7 +28,7 @@ const layout_content_var = 'content';
  * 2-step strategy
  * returns http response data
  */
-function render(string $template, array $vars = [], int $status = response\response_status_ok): response
+function render(string $template, array $vars = [], int $status = response\status_ok): response
 {
     return response\build_response(
         render_template(layout_template, [
