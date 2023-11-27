@@ -1,8 +1,8 @@
 <?php
 
-namespace app\model\albums;
+namespace app\models\album;
 
-use app\model\db\albums_table;
+use app\models\db\album_table;
 
 /**
  * Parameters of an album
@@ -12,21 +12,21 @@ const param_id = 'id',
       param_artist = 'artist';
 
 function list_albums(): array {
-    return albums_table\select();
+    return album_table\select();
 }
 
 function add_album(array $data): void {
-    albums_table\insert($data);
+    album_table\insert($data);
 }
 
 function get_album(int $id): ?array {
-    return albums_table\select(['id' => $id])[0] ?? null;
+    return album_table\select(['id' => $id])[0] ?? null;
 }
 
 function delete_album(int $id): void {
-    albums_table\delete(['id' => $id]);
+    album_table\delete(['id' => $id]);
 }
 
 function update_album(int $id, array $data): void {
-    albums_table\update($data, ['id' => $id]);
+    album_table\update($data, ['id' => $id]);
 }

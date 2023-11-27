@@ -1,6 +1,6 @@
 <?php
 
-namespace app\model\db;
+namespace app\models\db;
 
 use aint;
 

@@ -12,7 +12,12 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($albums as $album) : ?>
+    <?php if (empty($albums)): ?>
+      <tr>
+        <td colspan="3"><?= t('No albums found.') ?></td>
+      </tr>
+    <?php endif ?>
+    <?php foreach ($albums as $album): ?>
       <tr>
         <td><?= h($album['title']) ?></td>
         <td><?= h($album['artist']) ?></td>

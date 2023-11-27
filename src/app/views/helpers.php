@@ -1,5 +1,5 @@
 <?php
-namespace app\view\helpers;
+namespace app\views\helpers;
 
 use aint\web\view;
 

@@ -41,8 +41,8 @@ if (!defined('aint\error_log')) {
 /**
  * Application configuration
  */
-const app_config = '/configs/app.inc',
-      app_local_config = '/configs/app.local.inc';
+const app_config = '/config/app.inc',
+      app_local_config = '/config/app.local.inc';
 
 /**
  * Namespace for application action-functions

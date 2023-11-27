@@ -1,8 +1,8 @@
 <?php
 
-namespace app\model\db\albums_table;
+namespace app\models\db\album_table;
 
-use app\model\db;
+use app\models\db;
 
 const table = 'albums';
 
