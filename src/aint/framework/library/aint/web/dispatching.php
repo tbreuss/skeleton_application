@@ -49,10 +49,11 @@ function dispatch_request(
                 && !is_callable($action = $actions_namespace . '\\' . $action))) // @phpstan-ignore-line
             throw new not_found_error();
 
-        $request_methods = ['GET']; // default
+        $request_methods = [];
         foreach ((new \ReflectionFunction($action))->getAttributes() as $attribute) {
             $request_methods[] = $attribute->newInstance()->type;
         }
+        $request_methods = empty($request_methods) ? ['GET'] : $request_methods;
 
         if (!in_array($request->method, $request_methods)) {
             throw new method_not_allowed_error();

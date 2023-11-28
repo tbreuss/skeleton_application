@@ -3,7 +3,7 @@
     <div class="control-group">
       <label class="control-label" for="title"><?= t('Title') ?></label>
       <div class="controls">
-        <input type="text" class="input-xlarge" id="title" name="title" value="<?= h($album['title']) ?>" />
+        <input type="text" class="input-xlarge" id="title" name="title" value="<?= h($album['title']) ?>" autofocus />
       </div>
     </div>
     <div class="control-group">
@@ -14,6 +14,7 @@
     </div>
     <div class="form-actions">
       <button type="submit" class="btn btn-primary"><?= t('Save') ?></button>
+      &nbsp; <a href="<?= url('albums\index_action') ?>"><?= t('Cancel') ?></a>
     </div>
   </fieldset>
 </form>

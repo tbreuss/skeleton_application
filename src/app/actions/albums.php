@@ -15,22 +15,18 @@ function list_action(): response {
     return view\render('albums/list', ['albums' => album\list_albums()]);
 }
 
-#[request\is_post]
-function add_action(request $request): response {
-    if (request\is_post($request)) {
-        album\add_album($request->params);
-        return response\build_redirect('/albums');
-    }
+function add_form_action(): response {
     return view\render('albums/add');
 }
 
 #[request\is_post]
-function edit_action(request $request, array $params): response {
+function add_action(request $request): response {
+    album\add_album($request->params);
+    return response\build_redirect('/albums');
+}
+
+function edit_form_action(request $request, array $params): response {
     $id = $params['id'];
-    if (request\is_post($request)) {
-        album\update_album($id, $request->params);
-        return response\build_redirect('/albums');
-    }
     $album = album\get_album($id);
     return $album
         ? view\render('albums/edit', ['album' => $album])
@@ -38,6 +34,11 @@ function edit_action(request $request, array $params): response {
 }
 
 #[request\is_post]
+function edit_action(request $request, array $params): response {
+    album\update_album($params['id'], $request->params);
+    return response\build_redirect('/albums');
+}
+
 function delete_action(request $request, array $params): response {
     album\delete_album($params['id']);
     return response\build_redirect('/albums');
