@@ -9,7 +9,7 @@ use aint\web\response;
  * Custom templates parameters
  * path and file extension
  */
-const templates_path = 'app/templates/',
+const templates_path = 'app/views/',
       template_ext = '.phtml';
 
 /**
@@ -39,7 +39,7 @@ function render(string $template, array $vars = [], int $status = response\statu
 }
 
 /**
- * Renders one template from `templates` directory
+ * Renders one template from `views` directory
  */
 function render_template(string $template, array $vars = []): string
 {
