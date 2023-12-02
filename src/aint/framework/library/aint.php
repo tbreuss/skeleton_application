@@ -35,7 +35,7 @@ if (!defined('aint\log_errors')) {
 }
 
 if (!defined('aint\error_log')) {
-    define('aint\error_log', app_dir . '/logs/error.log');
+    define('aint\error_log', app_dir . '/runtime/logs/error.log');
 }
 
 /**
