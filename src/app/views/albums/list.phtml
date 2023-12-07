@@ -1,0 +1,31 @@
+<?php aint\html\head_title($title = t('My Albums')) ?>
+<h1><?= h($title) ?></h1>
+<p>
+  <a href="<?= url('albums\add_form_action') ?>"><?= t('Add new album') ?></a>
+</p>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><?= t('Title') ?></th>
+      <th><?= t('Artist') ?></th>
+      <th><?= t('Controls') ?></th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php if (empty($albums)): ?>
+      <tr>
+        <td colspan="3"><?= t('No albums found.') ?></td>
+      </tr>
+    <?php endif ?>
+    <?php foreach ($albums as $album): ?>
+      <tr>
+        <td><?= h($album['title']) ?></td>
+        <td><?= h($album['artist']) ?></td>
+        <td>
+          <a href="<?= url('albums\edit_form_action', ['id' => $album['id']]) ?>"><?= t('Edit') ?></a> |
+          <a href="<?= url('albums\delete_action', ['id' => $album['id']]) ?>"><?= t('Delete') ?></a>
+        </td>
+      </tr>
+    <?php endforeach ?>
+  </tbody>
+</table>
